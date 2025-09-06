@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do list Board</title>
+</head>
+<style>
+    body
+    {
+      font-family: Arial, sans-serif;
+      background-color: aliceblue;
+      margin: 0px;
+      padding: 20px;
+    }
+    h1
+    {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .board
+    {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+    .column {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      width: 250px;
+    }
+    .column h2
+    {
+        font-size:20px;
+        text-align: center;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .card
+    {
+    background: #e9ecef;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    cursor: grab;
+    }
+
+    .card:hover
+    {
+      background: #dbe4ea;
+    }
+    .buttons
+    {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        gap: 10px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .card_progress
+    {
+        justify-content: space-between;
+    }
+
+    .compl
+    {
+        margin-left: 75px;
+    }
+    .buttons :hover
+    {
+        background-color:lightcyan;
+    }
+
+</style>
+<body>
+    <h1>To - Do List</h1>
+
+    <div class="board">
+        <div class="column">
+            <h2>To Do</h2>
+            <div class="buttons">
+                <button class="add">Add Task</button>
+                <button class="remove">Remove Task</button>
+            </div>
+            <div class="card">Task 5
+                <button class="compl">Start working..</button>
+            </div>
+            <div class="card">Task 6
+                <button class="compl">Start working..</button>
+            </div>
+        </div>
+        <div class="column" id="inprogress">
+            <h2>In Progress</h2>
+           <div class="card" id="pro">Task 2
+            <button class="compl">Completed !!</button>
+           </div>
+            <div class="card">Task 3
+            <button class="compl">Completed !!</button>
+            </div>
+            <div class="card">Task 4
+            <button class="compl">Completed !!</button>
+            </div>
+        </div> 
+        <div class="column">
+            <h2>Done !!</h2>
+           <div class="card">Task 1</div>
+        </div> 
+    </div>
+
+
+
+
+    <script>
+        const inprogress = document.getElementById("inprogress");
+
+        document.querySelectorAll("#todo .compl").forEach(button =>{
+            button.addEventListener("click",finction(){
+                const c = this.parentElement;
+            });
+        });
+            </script>
+</body>
+</html>
