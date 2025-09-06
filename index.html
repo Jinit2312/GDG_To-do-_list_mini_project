@@ -83,7 +83,7 @@
     <h1>To - Do List</h1>
 
     <div class="board">
-        <div class="column">
+        <div class="column" id="todo">
             <h2>To Do</h2>
             <div class="buttons">
                 <button class="add">Add Task</button>
@@ -108,7 +108,7 @@
             <button class="compl">Completed !!</button>
             </div>
         </div> 
-        <div class="column">
+        <div class="column" id="done">
             <h2>Done !!</h2>
            <div class="card">Task 1</div>
         </div> 
@@ -117,14 +117,71 @@
 
 
 
-    <script>
-        const inprogress = document.getElementById("inprogress");
+     <script>
 
-        document.querySelectorAll("#todo .compl").forEach(button =>{
-            button.addEventListener("click",finction(){
-                const c = this.parentElement;
+        const inProgressColum = document.getElementById("inprogress");
+
+        document.querySelectorAll("#todo .compl").forEach(button => {
+            button.addEventListener("click", function() {
+           
+                const card = this.parentElement;//to get parent element from id itself
+
+                this.textContent = "Completed !!";
+
+                inProgressColum.appendChild(card);
             });
         });
-            </script>
+
+     
+
+ 
+ const todoColumn = document.getElementById("todo");
+  const inProgressColumn = document.getElementById("inprogress");
+  const doneColumn = document.getElementById("done");
+
+  
+  function enableCompleteButton(card) {
+    const button = card.querySelector(".compl");
+    if (!button) return;
+
+    button.textContent = "Completed !!";
+
+    button.onclick = function () {
+      button.remove(); 
+      doneColumn.appendChild(card);
+    };
+  }
+
+  
+  document.querySelector("#todo .add").addEventListener("click", function () {
+    const taskName = prompt("Enter task name:");
+    if (!taskName) return;
+
+    const newCard = document.createElement("div");
+    newCard.classList.add("card");
+    newCard.innerHTML = `${taskName} 
+        <button class="compl">Start working..</button>`;
+
+    todoColumn.appendChild(newCard);
+
+    
+    newCard.querySelector(".compl").onclick = function () {
+      inProgressColumn.appendChild(newCard);
+      enableCompleteButton(newCard); 
+    };
+  });
+
+  
+  document.querySelector("#todo .remove").addEventListener("click", function () {
+    const cards = todoColumn.querySelectorAll(".card");
+    if (cards.length > 0) {
+      cards[cards.length - 1].remove();
+    } else {
+      alert("No tasks to remove!");
+    }
+  });
+
+  document.querySelectorAll("#inprogress .card").forEach(enableCompleteButton);
+    </script>
 </body>
 </html>
